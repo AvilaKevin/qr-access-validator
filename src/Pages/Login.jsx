@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppContext } from '../Context/AppContext.js';
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import db from '../Firebase/firebaseConfig.js';
 
 const Login = () => {
@@ -43,8 +43,10 @@ const Login = () => {
 
         let userNameQResult = [];
         let passwordQResult = [];
+        let idObject;
 
         querySnapshotUserName.forEach((doc) => {
+            idObject = doc.id;
             userNameQResult = doc.data();
         });
         querySnapshotPassword.forEach((doc) => {
@@ -55,16 +57,17 @@ const Login = () => {
         let bdPassword = passwordQResult.password;
         let isAdmin = passwordQResult.valAdmin;
 
+        const objectCompuest = { idObject, userNameQResult };
+
         // users validation:
         if (bdUser === inputUser && bdPassword === inputPassword) {
-            console.log("iniciaste sesion");
-            await store.setUser(userNameQResult);
+            await store.setUser(objectCompuest);
             if (isAdmin == true) {
-                console.log("Iniciaste como administrador");
+                console.log("You are login like admin");
                 navigate("/Admin");
-                // return (<Link to={`/Admin`} />)
             } else {
-                console.log("Iniciaste como usuario");
+                console.log("You are login like employee");
+                navigate("/Employees");
             };
         } else {
             console.log("Usuario no encontrado");

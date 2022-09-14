@@ -1,52 +1,60 @@
-import React from 'react'
+import { collection, getDocs } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react'
 import db from '../Firebase/firebaseConfig';
 
-const Admin = () => {
+function Admin() {
 
-    function CreateUser() {
-        db.collection("Users").add({
-            userName: document.getElementById('userName').value,
-            password: document.getElementById('password').value,
-            userName: document.getElementById('valAdmin').value
-        })
-            .then((docRef) => {
-                console.log("registro existoso");
-            })
-            .catch((error) => {
-                console.error("Error ", error);
-            });
+    const [offices, setOffices] = useState([])
+
+    useEffect(() => {
+        const officesCollection = collection(db, "Offices")
+
+        const getSedes = async () => {
+            const data = await getDocs(officesCollection)
+            setOffices(
+                data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+            )
+            console.log(offices)
+        }
+        getSedes();
+    }, []);
+
+    function prueba() {
+        console.log(offices);
     }
 
-    function CreateSede() {
-        db.collection("Offices").add({
-            Usuario_name: document.getElementById('name').value,
-            cargo: document.getElementById('cargo').value
-        })
-            .then((docRef) => {
-                console.log("registro existoso");
-            })
-            .catch((error) => {
-                console.error("Error ", error);
-            });
-    }
+    const officesIdLi = offices.map((office) =>
+        <li key={office.id}
+        >{office.id}</li>
+    );
+
+    const officesLi = offices.map((office) =>
+        <li key={office.id}
+        >{office.office}</li>
+    );
+
+    const officesDescriptionLi = offices.map((office) =>
+        <li key={office.id}
+        >{office.description}</li>
+    );
+
 
     return (
         <div>
-            <form>
-                <h2>User Register</h2>
-                <input type='text' placeholder='User name' id='userName' />
-                <input type='text' placeholder='Password' id='password' />
-                <input type='text' placeholder='Acces office' id='accesOffice' />
-                <input type='checkbox' placeholder='Validate admin' id='valAdmin' />
-                <button type='submit' onChange={CreateUser}>Create</button>
-            </form>
+            <table>
+                <tr>
+                    <th>ID Offices</th>
+                    <th>Offices</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>{officesIdLi}</td>
+                    <td>{officesLi}</td>
+                    <td>{officesDescriptionLi}</td>
+                </tr>
+            </table>
 
-            <form>
-                <h2>Sede Register</h2>
-                <input type='text' placeholder='Sede Name' id='office' />
-                <input type='text' placeholder='Description' id='description' />
-                <button type='submit' onChange={CreateSede}>Create</button>
-            </form>
+            <div>Scaner Qr</div>
         </div>
     )
 }

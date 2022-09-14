@@ -13,7 +13,6 @@ import './App.css';
 import Store from "../Context/AppContext";
 
 function App() {
-
   // useEffect(() => {
   //   const obtenerDatos = async () => {
   //     const datos = await getDocs(collection(db, 'Usuarios'));
@@ -32,7 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="Admin" element={<Admin />} />
-          <Route path="Employees/:ID" element={<Employees />} />
+          <Route path="Employees" element={<Employees />} />
         </Routes>
       </BrowserRouter>
     </Store>
