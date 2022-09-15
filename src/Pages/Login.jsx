@@ -75,30 +75,44 @@ const Login = () => {
     };
 
     return (
-        <div className='flex justify-center'>
+        <div className='h-screen w-full flex flex-col items-center'>
 
-            <div className='bg-slate-500 h-96'>
-                <div className='flex flex-col items-center'>
+            <div className='my-auto w-96 p-4 border-none'>
 
-                    <figure>
-                        <img src='https://cdn-icons-png.flaticon.com/128/731/731985.png' alt='Logo' />
+                <div className='flex flex-col items-center mb-6'>
+                    <figure className='flex justify-center mb-7'>
+
+                        <img className='w-16' src='https://www.freepnglogos.com/uploads/key-png/download-key-png-pic-png-image-pngimg-36.png' alt='Logo' />
+
                     </figure>
 
-                    <h1>Sign in</h1>
+                    <h1 className='font-semibold text-2xl'>Sign in</h1>
                 </div>
 
                 <div>
-
                     <form className='flex flex-col p-4'>
-                        <input type='text' name='user' placeholder='User' value={inputUser} onChange={handleChange} />
-                        <input type='Password' name='password' placeholder='Password' value={inputPassword} onChange={handleChange} />
-                        <button onClick={usuarioValidator}>Sign in</button>
-                    </form>
 
+                        <input
+                            className='block p-2 w-full text-gray-900 bg-gray-100 rounded-lg mb-6'
+                            type='text' name='user' placeholder='User' value={inputUser} onChange={handleChange} />
+
+                        <input
+                            className='block p-2 w-full text-gray-900 bg-gray-100 rounded-lg'
+                            type='Password' name='password' placeholder='Password' value={inputPassword} onChange={handleChange} />
+
+                        <button
+                            className='mt-12 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75'
+                            onClick={usuarioValidator}>Sign in</button>
+                    </form>
                 </div>
 
             </div>
 
+            <footer
+                className='fixed bottom-0 left-0 z-20 p-4 w-full bg-gray-50 border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6'>
+                <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 Avila Kevin™. All Rights Reserved.
+                </span>
+            </footer>
         </div>
     );
 };

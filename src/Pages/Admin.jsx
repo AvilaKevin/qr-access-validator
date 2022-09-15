@@ -1,13 +1,16 @@
-import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../Context/AppContext';
 import QrScanner from '../Components/QrScanner';
 import db from '../Firebase/firebaseConfig';
 
 function Admin() {
+
+    //Context Call
     const {
         dataReaderQr,
     } = useAppContext();
+
     // Offices State
     const [offices, setOffices] = useState([])
 
@@ -27,7 +30,7 @@ function Admin() {
 
 
     // Validate Acces
-    async function haveAccess() {
+    async function hasAccess() {
         // String to object
         // Get IDQr
         var temp = dataReaderQr.split(","),
@@ -38,14 +41,9 @@ function Admin() {
 
         var accessOffice = qrObj.accessOffice;
 
-        // // Array ID offices
-        // let saveIdOffices = []
-        // offices.map((office) =>
-        //     saveIdOffices.push(office.id)
-        // )
-        // // console.log(saveIdOffices[0]);
         const pruebId = "asdsadasd";
 
+        //Validate Access
         const docRef = doc(db, "Offices", accessOffice);
         try {
             const docSnap = await getDoc(docRef);
@@ -60,46 +58,56 @@ function Admin() {
         }
     }
 
-    // Show Offices Data
-    const officesIdLi = offices.map((office) =>
-        <li key={office.id}
-        >{office.id}</li>
-    );
-
-    const officesLi = offices.map((office) =>
-        <li key={office.id}
-        >{office.office}</li>
-    );
-
-    const officesDescriptionLi = offices.map((office) =>
-        <li key={office.id}
-        >{office.description}</li>
-    );
-
-
-
-
-
     return (
-        <div>
-            <table>
-                <tr>
-                    <th>ID Offices</th>
-                    <th>Offices</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td>{officesIdLi}</td>
-                    <td>{officesLi}</td>
-                    <td>{officesDescriptionLi}</td>
-                </tr>
-            </table>
+        <div className='h-screen w-full flex flex-col'>
 
-            <div>
+            <header className='w-full p-3 bg-gray-50 rounded border-gray-200'>
+                <figure>
+
+                    <img className='w-10' src='https://www.freepnglogos.com/uploads/key-png/download-key-png-pic-png-image-pngimg-36.png' alt='Logo' />
+
+                </figure>
+            </header>
+
+            <main className='flex flex-col items-center my-auto'>
+                <div className='sm:rounded-lg'>
+                    <table className='bg-gray-50 rounded border-gray-200'>
+                        <thead className='uppercase bg-slate-300'>
+                            <tr>
+                                <th className="py-3 px-6">ID</th>
+                                <th className="py-3 px-6">Office</th>
+                                <th className="py-3 px-6">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                offices.map((office) => (
+                                    <tr
+                                        className='border-b'
+                                        key={office.id}>
+                                        <td className='py-2 px-2'>{office.id}</td>
+                                        <td className='py-2 px-2 text-center'>{office.office}</td>
+                                        <td className='py-2 px-2 text-center'>{office.description}</td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+
                 <QrScanner />
-            </div>
 
-            <button onClick={haveAccess}>prueba</button>
+                <button
+                    className='mt-12 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75'
+                    onClick={hasAccess}>validate access</button>
+            </main>
+
+            <footer
+                className='fixed bottom-0 left-0 z-20 p-4 w-full bg-gray-50 border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6'>
+                <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 Avila Kevin™. All Rights Reserved.
+                </span>
+            </footer>
         </div>
     )
 }

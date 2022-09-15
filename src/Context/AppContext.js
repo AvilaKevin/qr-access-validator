@@ -42,14 +42,11 @@ export default function Store({ children }) {
         return promesa;
     }
 
-    var pruebita = console.log(user)
-
     return (
         <AppContext.Provider
             value={{
                 user,
                 setUser,
-                pruebita,
                 userLocation,
                 datosQr,
                 dataReaderQr,

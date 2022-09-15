@@ -1,0 +1,15 @@
+.containerMain {
+    height: 1vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.containerLogin {
+    margin-top: auto;
+    background-color: red;
+}
+
+.containerImg_img {
+    width: 30px;
+}

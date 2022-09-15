@@ -1,7 +1,6 @@
 import React from 'react';
 import { QrReader } from 'react-qr-reader';
 import { useAppContext } from '../Context/AppContext';
-import './QrScanner.css';
 
 function QrScanner(props) {
 
@@ -15,7 +14,7 @@ function QrScanner(props) {
     // }
     return (
         <>
-            <div className='ContainerQr'>
+            <div className='w-72'>
                 <QrReader
                     onResult={(result, error) => {
                         if (!!result) {
@@ -24,10 +23,9 @@ function QrScanner(props) {
 
 
                     }}
-                    style={{ width: '100%' }}
                 />
             </div>
-            <p>Aqui va el resultado {dataReaderQr}</p>
+            <p>{dataReaderQr}</p>
         </>
     );
 }
