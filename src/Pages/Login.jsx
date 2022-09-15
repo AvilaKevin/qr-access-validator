@@ -59,7 +59,7 @@ const Login = () => {
 
         const objectCompuest = { idObject, userNameQResult };
 
-        // users validation:
+        // Users Validation:
         if (bdUser === inputUser && bdPassword === inputPassword) {
             await store.setUser(objectCompuest);
             if (isAdmin == true) {
@@ -70,7 +70,7 @@ const Login = () => {
                 navigate("/Employees");
             };
         } else {
-            console.log("Usuario no encontrado");
+            console.log("User no found");
         };
     };
 

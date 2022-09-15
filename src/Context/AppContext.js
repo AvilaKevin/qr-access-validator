@@ -7,6 +7,8 @@ export default function Store({ children }) {
     const [user, setUser] = useState([])
     // Longitude and latitude Qr
     const [datosQr, setDatosQr] = useState([])
+    // Qr Data
+    const [dataReaderQr, setDataReaderQr] = useState('No data');
 
     // Get Userlocation
     function userLocation() {
@@ -24,8 +26,8 @@ export default function Store({ children }) {
                 let longitude;
                 function success(pos) {
                     const crd = pos.coords;
-                    latitude = 'Latitude: ' + crd.latitude;
-                    longitude = 'Longitude: ' + crd.longitude;
+                    latitude = 'latitude,' + crd.latitude;
+                    longitude = 'longitude,' + crd.longitude;
                     resolve(setDatosQr([latitude, longitude]));
                 }
 
@@ -49,7 +51,9 @@ export default function Store({ children }) {
                 setUser,
                 pruebita,
                 userLocation,
-                datosQr
+                datosQr,
+                dataReaderQr,
+                setDataReaderQr
             }}
         >
             {children}

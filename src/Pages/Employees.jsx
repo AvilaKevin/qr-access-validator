@@ -22,11 +22,11 @@ function Employees() {
     }, []);
 
     const userName = user.userNameQResult.userName;
-    const userId = user.idObject;
-
+    const idUser = "idUser," + user.idObject;
+    const accessOffice = "accessOffice," + user.userNameQResult.accessOffice;
 
     function prueba3() {
-        console.log(datosQr)
+        console.log("SOY PRUEBA" + typeof accessOffice)
     }
 
     return (
@@ -35,8 +35,7 @@ function Employees() {
             <h1>Hola {userName}</h1>
             <div>
                 <QRCode value={
-                    "Id user: " + userId + ", " +
-                    "Geolocation user: " + datosQr
+                    idUser + "," + datosQr + "," + accessOffice
                 } />
             </div>
             {/* <button onClick={userLocation}>Get Qr Access</button> */}
