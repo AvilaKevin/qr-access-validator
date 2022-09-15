@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const AppContext = createContext();
 
@@ -8,7 +8,7 @@ export default function Store({ children }) {
     // Longitude and latitude Qr
     const [datosQr, setDatosQr] = useState([])
     // Qr Data
-    const [dataReaderQr, setDataReaderQr] = useState('No data');
+    const [dataReaderQr, setDataReaderQr] = useState();
 
     // Get Userlocation
     function userLocation() {

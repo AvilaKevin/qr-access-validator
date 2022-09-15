@@ -1,42 +1,27 @@
-//Library Import
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import React from "react";
-// import { collection, query, where, getDocs, doc } from "firebase/firestore"
-// import db from '../Firebase/firebaseConfig.js'
+import './App.css';
 
 //Components Import
 import Login from '../Pages/Login';
 import Admin from '../Pages/Admin';
 import Employees from '../Pages/Employees';
-
-import './App.css';
 import Store from "../Context/AppContext";
-import QrScanner from "../Components/QrScanner";
 
 function App() {
-  // useEffect(() => {
-  //   const obtenerDatos = async () => {
-  //     const datos = await getDocs(collection(db, 'Usuarios'));
-  //     datos.forEach((documento) => {
-  //       console.log(documento.data());
-  //     })
-  //     // console.log(datos.docs);
-  //   }
-
-  //   obtenerDatos();
-  // }, []);
 
   return (
+
     <Store>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="Admin" element={<Admin />} />
           <Route path="Employees" element={<Employees />} />
-          <Route path="QrScanner" element={<QrScanner />} />
         </Routes>
       </BrowserRouter>
     </Store>
+
   );
 
 }

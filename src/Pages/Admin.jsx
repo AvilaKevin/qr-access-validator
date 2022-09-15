@@ -1,21 +1,18 @@
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
-import { useAppContext } from '../Context/AppContext';
-import QrScanner from '../Components/QrScanner';
+import { QrReader } from 'react-qr-reader';
 import db from '../Firebase/firebaseConfig';
 
 function Admin() {
 
-    //Context Call
-    const {
-        dataReaderQr,
-    } = useAppContext();
+    // Qr Data
+    const [dataReaderQr, setDataReaderQr] = useState('No data');
 
     // Offices State
     const [offices, setOffices] = useState([])
 
-    // Get Offices
     useEffect(() => {
+        // Get Offices
         const officesCollection = collection(db, "Offices")
 
         const getSedes = async () => {
@@ -23,32 +20,32 @@ function Admin() {
             setOffices(
                 data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
             )
-            console.log(offices)
         }
         getSedes();
-    }, []);
 
+        //String to object
+        if (dataReaderQr == "No data") {
+        } else {
+            // Get IDQr
+            let temp = dataReaderQr.split(","),
+                qrObj = {};
+            for (let i = 0; i < temp.length; i += 2) {
+                qrObj[temp[i]] = temp[(i + 1)];
+            };
+            let accessOffice;
+            accessOffice = qrObj.accessOffice;
+            hasAccess(accessOffice)
+        }
+    }, [dataReaderQr]);
 
     // Validate Acces
-    async function hasAccess() {
-        // String to object
-        // Get IDQr
-        var temp = dataReaderQr.split(","),
-            qrObj = {};
-        for (let i = 0; i < temp.length; i += 2) {
-            qrObj[temp[i]] = temp[(i + 1)];
-        };
-
-        var accessOffice = qrObj.accessOffice;
-
-        const pruebId = "asdsadasd";
-
-        //Validate Access
+    async function hasAccess(accessOffice) {
         const docRef = doc(db, "Offices", accessOffice);
         try {
             const docSnap = await getDoc(docRef);
+            let QResult = docSnap.data()
             if (docSnap.exists()) {
-                alert("User has access to :" + docSnap.data());
+                alert("User has access to " + QResult.office);
             } else {
                 alert("User without access data")
             }
@@ -60,8 +57,7 @@ function Admin() {
 
     return (
         <div className='h-screen w-full flex flex-col'>
-
-            <header className='w-full p-3 bg-gray-50 rounded border-gray-200'>
+            <header className='w-full p-3 bg-gray-50 border-b border-gray-200'>
                 <figure>
 
                     <img className='w-10' src='https://www.freepnglogos.com/uploads/key-png/download-key-png-pic-png-image-pngimg-36.png' alt='Logo' />
@@ -95,12 +91,17 @@ function Admin() {
                     </table>
                 </div>
 
-
-                <QrScanner />
-
-                <button
-                    className='mt-12 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75'
-                    onClick={hasAccess}>validate access</button>
+                <div>
+                    <div className='w-72'>
+                        <QrReader
+                            onResult={(result) => {
+                                if (!!result) {
+                                    setDataReaderQr(result?.text);
+                                }
+                            }}
+                        />
+                    </div>
+                </div>
             </main>
 
             <footer

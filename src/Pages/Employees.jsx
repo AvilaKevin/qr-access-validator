@@ -22,10 +22,6 @@ function Employees() {
     const idUser = "idUser," + user.idObject;
     const accessOffice = "accessOffice," + user.userNameQResult.accessOffice;
 
-    function prueba3() {
-        console.log(accessOffice)
-    }
-
     return (
 
         <div className='h-screen w-full flex flex-col items-center'>
@@ -46,8 +42,6 @@ function Employees() {
                         idUser + "," + datosQr + "," + accessOffice
                     } />
                 </div>
-
-                <button onClick={prueba3}>prueba 2</button>
             </div>
 
             <footer
