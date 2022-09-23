@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { QrReader } from 'react-qr-reader';
 import db from '../Firebase/firebaseConfig';
 
+// Render:
+// - Table
+// - QrReader
+
 function Admin() {
 
     // Qr Data
@@ -23,7 +27,7 @@ function Admin() {
         }
         getSedes();
 
-        //String to object
+        // String to object
         if (dataReaderQr == "No data") {
         } else {
             // Get IDQr
@@ -38,7 +42,7 @@ function Admin() {
         }
     }, [dataReaderQr]);
 
-    // Validate Acces
+    // Validate Access
     async function hasAccess(accessOffice) {
         const docRef = doc(db, "Offices", accessOffice);
         try {
@@ -57,7 +61,7 @@ function Admin() {
 
     return (
         <div className='h-screen w-full flex flex-col'>
-            <header className='w-full p-3 bg-gray-50 border-b border-gray-200'>
+            <header className='w-full p-3 bg-gray-50 border-b shadow border-gray-200'>
                 <figure>
 
                     <img className='w-10' src='https://www.freepnglogos.com/uploads/key-png/download-key-png-pic-png-image-pngimg-36.png' alt='Logo' />
@@ -65,48 +69,55 @@ function Admin() {
                 </figure>
             </header>
 
-            <main className='flex flex-col items-center my-auto'>
-                <div className='sm:rounded-lg'>
-                    <table className='bg-gray-50 rounded border-gray-200'>
-                        <thead className='uppercase bg-slate-300'>
-                            <tr>
-                                <th className="py-3 px-6">ID</th>
-                                <th className="py-3 px-6">Office</th>
-                                <th className="py-3 px-6">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                offices.map((office) => (
-                                    <tr
-                                        className='border-b'
-                                        key={office.id}>
-                                        <td className='py-2 px-2'>{office.id}</td>
-                                        <td className='py-2 px-2 text-center'>{office.office}</td>
-                                        <td className='py-2 px-2 text-center'>{office.description}</td>
-                                    </tr>
-                                ))
-                            }
-                        </tbody>
-                    </table>
-                </div>
+            <main className='w-full h-full flex items-center justify-center'>
 
-                <div>
-                    <div className='w-72'>
-                        <QrReader
-                            onResult={(result) => {
-                                if (!!result) {
-                                    setDataReaderQr(result?.text);
+                <div className='w-full sm:w-[60%] flex flex-col items-center'>
+
+                    <div className='w-[95%] sm:w-auto overflow-x-auto flex justify-center'>
+
+                        <table className='bg-gray-50 rounded border-gray-200'>
+                            <thead className='uppercase bg-slate-300'>
+                                <tr>
+                                    <th className="py-3 px-6">ID</th>
+                                    <th className="py-3 px-6">Office</th>
+                                    <th className="py-3 px-6">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    offices.map((office) => (
+                                        <tr
+                                            className='border-b'
+                                            key={office.id}>
+                                            <td className='py-2 px-2'>{office.id}</td>
+                                            <td className='py-2 px-2 text-center'>{office.office}</td>
+                                            <td className='py-2 px-2 text-center'>{office.description}</td>
+                                        </tr>
+                                    ))
                                 }
-                            }}
-                        />
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div>
+                        <div className='w-72'>
+                            <QrReader
+                                onResult={(result) => {
+                                    if (!!result) {
+                                        setDataReaderQr(result?.text);
+                                    }
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
+
             </main>
 
             <footer
-                className='fixed bottom-0 left-0 z-20 p-4 w-full bg-gray-50 border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6'>
-                <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 Avila Kevin™. All Rights Reserved.
+                className='mt-auto p-4 w-full text-center bg-gray-50 border-t border-gray-200 shadow'>
+                <span className="text-sm text-gray-500 ">© 2022 Avila Kevin™. All Rights Reserved.
                 </span>
             </footer>
         </div>
