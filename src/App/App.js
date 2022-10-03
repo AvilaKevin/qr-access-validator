@@ -13,7 +13,7 @@ function App() {
   return (
 
     <Store>
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="Admin" element={<Admin />} />
