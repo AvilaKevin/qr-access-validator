@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+<h1 align="center">🏽 Qr Access Validator</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### **📕 Description:**
 
-## Available Scripts
+Web application that validates user access through a QR code which stores the user's ID and location in real time.
 
-In the project directory, you can run:
+------------
 
-### `npm start`
+### **📺 Screenshots:**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Login:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[![Login](https://i.imgur.com/qEMZlN0.png "Login")](https://i.imgur.com/qEMZlN0.png "Login")
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Users session:
 
-### `npm run build`
+[![UserSession](https://i.imgur.com/FpvOCaT.png "UserSession")](https://i.imgur.com/FpvOCaT.png "UserSession")
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Admin session:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[![AdminSession](https://i.imgur.com/TSmUZNy.png "AdminSession")](https://i.imgur.com/TSmUZNy.png "AdminSession")
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+------------
 
-### `npm run eject`
+### **📕 How to use:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1.Create a database which has a offices table and users table, the tables has to looks like the next:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[![Offices](https://i.imgur.com/bNRTuBo.png "Offices")](https://i.imgur.com/bNRTuBo.png "Offices")
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+[![Users](https://i.imgur.com/JDhiNum.png "Users")](https://i.imgur.com/JDhiNum.png "Users")
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2.Install firebase according to the [oficial](https://firebase.google.com/docs/firestore/quickstart "oficial") documentation.
 
-## Learn More
+3.Connect Cloud Firestore with the project.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4.Run the project.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+------------
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### **🚀 Technologies:**
+1. ReactJs
+2. Firebase
+3. Tailwind Css
