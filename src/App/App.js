@@ -1,6 +1,5 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import React from "react";
-import './App.css';
 
 //Components Import
 import Login from '../Pages/Login';
@@ -13,9 +12,9 @@ function App() {
   return (
 
     <Store>
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route exact path="/" element={<Login />} />
           <Route path="Admin" element={<Admin />} />
           <Route path="Employees" element={<Employees />} />
         </Routes>
