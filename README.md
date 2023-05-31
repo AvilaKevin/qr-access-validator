@@ -2,7 +2,7 @@
 
 ### **📕 Description:**
 
-Web application that validates user access through a QR code which stores the user's ID and location in real time.
+Web application that validates user access through a QR code that stores the user's ID and location in real time.
 
 ------------
 
